@@ -23,7 +23,7 @@ m.seed(s, () => {
 });
 
 bot.on('message', (msg) => {
-  if (!msg.author.bot && (msg.content[0] !== '!')) {
+  if (!msg.author.bot && (msg.content[0] !== '!') && (!msg.mentions.users.find(val => val.id === secret.botId))) {
     markovListener.write(`${msg.content}\n`);
   }
 });
