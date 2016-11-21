@@ -15,7 +15,7 @@ bot.on('ready', () => {
 
 m.seed(s, () => {
   bot.on('message', (msg) => {
-    if (msg.mentions.users.find(val => val.id === secret.botId)) {
+    if (msg.mentions.users.find(val => val.id === secret.botId) && !msg.author.bot) {
       let res = m.respond(msg.toString()).join(' ');
       msg.channel.sendMessage(res);
     }
