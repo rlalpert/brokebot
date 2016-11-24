@@ -13,13 +13,15 @@ bot.on('ready', () => {
   console.log('BrokeBot GO!');
 });
 
-m.seed(s, () => {
-  bot.on('message', (msg) => {
-    if (msg.mentions.users.find(val => val.id === secret.botId) && !msg.author.bot) {
-      let res = m.respond(msg.toString()).join(' ');
-      msg.channel.sendMessage(res);
-    }
-  });
+m.seed(s);
+
+bot.on('message', (msg) => {
+  if (msg.mentions.users.find(val => val.id === secret.botId) && !msg.author.bot) {
+    let key = m.search(msg.toString());
+    // let res = m.respond(msg.toString()).join(' ');
+    let res = m.forward(key).join(' ');
+    msg.channel.sendMessage(res);
+  }
 });
 
 bot.on('message', (msg) => {
